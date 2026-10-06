@@ -5,7 +5,7 @@ st.set_page_config(page_title="Đề Thi Toán 2025", page_icon="📝")
 st.title("📝 Đề Kiểm Tra (Cấu trúc 2025)")
 
 # --- 1. LINK FILE EXCEL (CSV) NGÂN HÀNG ĐỀ ---
-url_csv = https://docs.google.com/spreadsheets/d/e/2PACX-1vSgL0N3nFv1hy9T4BI5lhWl9Q7HOzuk09n6PDGlmeFYCeJcF0pQnX-s5hSsgWBj2h-5Jl6FpYoa3bPF/pub?output=csv
+url_csv = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgL0N3nFv1hy9T4BI5lhWl9Q7HOzuk09n6PDGlmeFYCeJcF0pQnX-s5hSsgWBj2h-5Jl6FpYoa3bPF/pub?output=csv"
 
 @st.cache_data(ttl=60) # Cập nhật đề sau mỗi 60 giây
 def load_data(url):
