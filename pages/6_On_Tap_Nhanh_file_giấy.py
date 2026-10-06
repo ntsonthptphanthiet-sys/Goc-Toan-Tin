@@ -83,6 +83,7 @@ st.markdown("---")
 st.subheader("🖨️ Dành cho Giáo viên: Xuất đề để in")
 
 # Tạo nội dung file HTML có nhúng sẵn thư viện dịch Toán học (MathJax)
+# Tạo nội dung file HTML có nhúng cấu hình MathJax nhận diện dấu $
 html_content = """
 <!DOCTYPE html>
 <html>
@@ -90,6 +91,14 @@ html_content = """
     <meta charset="utf-8">
     <title>Đề Ôn Tập Toán</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+        displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']]
+      }
+    };
+    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body { font-family: 'Times New Roman', serif; font-size: 17px; padding: 30px; line-height: 1.5; max-width: 800px; margin: auto; }
