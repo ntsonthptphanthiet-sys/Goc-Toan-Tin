@@ -6,7 +6,7 @@ st.set_page_config(page_title="Ôn Tập Nhanh", page_icon="⚡")
 st.title("⚡ Ôn Tập Nhanh: 10 Câu Trắc Nghiệm")
 
 # --- 1. DÙNG CHUNG LINK NGÂN HÀNG ĐỀ CỦA ANH ---
-url_csv = "DÁN_LINK_CSV_CỦA_ANH_VÀO_ĐÂY"
+url_csv = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQJB3Xq8s1Xrs3BX-tUrLA92C8E9cnCRfhAuekiEitNCvC3WWeIoFhpm7INZ0Puhc-o6Md-DVeMcT1b/pub?output=csv"
 
 @st.cache_data(ttl=60)
 def load_data(url):
