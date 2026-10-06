@@ -78,21 +78,47 @@ if nop_bai:
         del st.session_state.on_tap_opts
         st.rerun()
 
-# --- 5. DÀNH CHO GIÁO VIÊN: XUẤT FILE IN ---
+# --- 5. DÀNH CHO GIÁO VIÊN: XUẤT FILE IN (ĐỊNH DẠNG HTML) ---
 st.markdown("---")
 st.subheader("🖨️ Dành cho Giáo viên: Xuất đề để in")
 
-noi_dung_de = "ĐỀ ÔN TẬP TOÁN (10 CÂU NGẪU NHIÊN)\n"
-noi_dung_de += "-" * 40 + "\n\n"
+# Tạo nội dung file HTML có nhúng sẵn thư viện dịch Toán học (MathJax)
+html_content = """
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Đề Ôn Tập Toán</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Times New Roman', serif; font-size: 17px; padding: 30px; line-height: 1.5; max-width: 800px; margin: auto; }
+        .cau-hoi { margin-top: 20px; font-weight: bold; }
+        .dap-an { margin-left: 20px; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">ĐỀ ÔN TẬP TOÁN (10 CÂU NGẪU NHIÊN)</h2>
+    <hr>
+"""
 
 for i, q in enumerate(st.session_state.on_tap_10):
-    noi_dung_de += f"Câu {i+1}: {q['CauHoi']}\n"
+    html_content += f"<div class='cau-hoi'>Câu {i+1}: {q['CauHoi']}</div>\n"
     opts = st.session_state.on_tap_opts[i]
-    noi_dung_de += f"{opts[0]}\n{opts[1]}\n{opts[2]}\n{opts[3]}\n\n"
+    html_content += f"<div class='dap-an'>{opts[0]}</div>\n"
+    html_content += f"<div class='dap-an'>{opts[1]}</div>\n"
+    html_content += f"<div class='dap-an'>{opts[2]}</div>\n"
+    html_content += f"<div class='dap-an'>{opts[3]}</div>\n"
 
+html_content += """
+</body>
+</html>
+"""
+
+# Nút tải file HTML về máy
 st.download_button(
-    label="📥 Tải Đề này về máy (File Text)",
-    data=noi_dung_de,
-    file_name="De_On_Tap_Ngau_Nhien.txt",
-    mime="text/plain"
+    label="📥 Tải Bản In (Tự động dịch công thức Toán)",
+    data=html_content,
+    file_name="De_On_Tap_In.html",
+    mime="text/html"
 )
